@@ -125,6 +125,31 @@ console.table(tempDailyChange(temperatures));
 // (more items are better). Return a list of items and the total whight.
 console.log("\nTask 4");
 
+function getMaxItems(arr){
+    let output = [];
+    let totalWeight = 0;
+
+    //cant just use regular .sort() because our array contains objects, and we have to define what in the object
+    //is to be sorted by (weight)
+    let sortedArrayBySmallest = [...arr].sort(function(a, b){return a.weight - b.weight});
+    console.table(sortedArrayBySmallest);
+
+    for (let i = 0; i < sortedArrayBySmallest.length; i++) {
+        let item = sortedArrayBySmallest[i];
+        let itemWeight = sortedArrayBySmallest[i].weight;
+
+        if (totalWeight < 40) {
+            if (totalWeight + itemWeight <= 40) {
+                output.push(item);
+                totalWeight += itemWeight;
+            }
+        }
+    }
+
+    console.table(output);
+    console.log(totalWeight);
+}
+
 let gear = [
                 { name: "Longsword", weight: 12 },
                 { name: "Steel Shield", weight: 15 },
@@ -133,7 +158,7 @@ let gear = [
                 { name: "Rope Coil", weight: 5 },
                 { name: "Crossbow", weight: 9 },
                 { name: "Spell Tome", weight: 8 },
-                { name: "Traveler’s Cloak", weight: 4 },
+                { name: "Traveler's Cloak", weight: 4 },
                 { name: "Mana Crystal", weight: 6 },
                 { name: "Rations Pack", weight: 10 },
                 { name: "Compass of True North", weight: 2 },
@@ -142,3 +167,6 @@ let gear = [
                 { name: "Lantern", weight: 5 },
                 { name: "Bag of Coins", weight: 13 }
                 ];
+
+getMaxItems(gear);
+//console.table(gear);
