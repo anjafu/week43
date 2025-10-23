@@ -1,5 +1,6 @@
 //#region Task 1
 // Write a function that finds the most popular pizza and prints both the name and the number of orders.
+console.log("Task 1");
 let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian", "Hawaiian", "Hawaiian"];
 
 
@@ -54,3 +55,36 @@ makeSalesReport(frequenciesPizzas);
 //#region Task 2
 // Write a function that takes the two arrays and returns a new array with students interleaved, 
 // one from Group A, one from Group B, and so on.
+console.log("\nTask 2");
+
+function interleaveClasses(arr1, arr2){
+    let output = [];
+
+    let longestArray = [];
+    if (arr1.length > arr2.length) {
+        longestArray = [...arr1];
+    } else {
+        longestArray = [...arr2];
+    }
+
+    for (let i = 0; i < longestArray.length; i++) {
+        if (arr1[i]) {
+            output.push(arr1[i]);
+        }
+
+        if (arr2[i]) {
+            output.push(arr2[i]);
+        }
+    }
+
+    return output;
+}
+
+let groupA = ["Liam", "Sofia", "Noah", "Thea", "Jonas"]; 
+let groupB = ["Emma", "Lucas", "Olivia"];
+
+console.table(interleaveClasses(groupA, groupB));
+
+//making sure the original arrays have not been changed by the function
+console.log(groupA);
+console.log(groupB);
