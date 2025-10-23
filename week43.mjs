@@ -60,14 +60,17 @@ console.log("\nTask 2");
 function interleaveClasses(arr1, arr2){
     let output = [];
 
-    let longestArray = [];
+    //finding the longest array to know how long the foor loop iteration must be to get all items
+    let longestArrayLength = 0;
     if (arr1.length > arr2.length) {
-        longestArray = [...arr1];
+        longestArrayLength = arr1.length;
     } else {
-        longestArray = [...arr2];
+        //longest array will be arr2 even if arr1 is same length as arr2 for simplicity
+        longestArrayLength = arr2.length;
     }
 
-    for (let i = 0; i < longestArray.length; i++) {
+    for (let i = 0; i < longestArrayLength; i++) {
+        //making sure the item in array exists (because the arrays can be different lengths), before we add it
         if (arr1[i]) {
             output.push(arr1[i]);
         }
