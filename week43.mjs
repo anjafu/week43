@@ -5,26 +5,39 @@ let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chick
 
 function findFrequencies(arr) {
     let object = {};
+
         for (let i = 0; i < arr.length; i++) {
             let item = arr[i];   
 
-            if (object[item] != undefined) {
+            //dont have to check if != undefined because undefined is the same as false
+            if (object[item]) {
+                //if item already exists in the object, just add value
                 object[item]++;
             } else {
+                //if item doesnt exist in the object, set value to 1
                 object[item] = 1;
             }
         }
+
     return object;
 }
 
+//note to self: what if multiple items have same orders? return a list. 
 function makeSalesReport(frequencies){
+    //making a list of all the frequencies keys (object keys), so i can iterate through it like a normal array
     let frequenciesKeysList = Object.keys(frequencies);
 
+    //starting it off with the first item on the list
     let mostSold = frequenciesKeysList[0];
 
-    for (let i = 0; i < frequenciesKeysList.length; i++) {
-        if (frequencies[mostSold] < frequencies[frequenciesKeysList[i]]) {
-            mostSold = frequenciesKeysList[i];
+    //starting from 1, because we already have the first value in the array saved in the mostSold variable
+    for (let i = 1; i < frequenciesKeysList.length; i++) {
+        //this gives us name of the key, aka name of the sold item
+        let itemName = frequenciesKeysList[i];
+
+        //frequencies[key] gives us the number of sales because frequencies.key = number of sales
+        if (frequencies[mostSold] < frequencies[itemName]) {
+            mostSold = itemName;
         }
     }
 
@@ -32,7 +45,7 @@ function makeSalesReport(frequencies){
 }
 
 let frequenciesPizzas = findFrequencies(soldPizzas);
-console.log(frequenciesPizzas);
+console.table(frequenciesPizzas);
 makeSalesReport(frequenciesPizzas);
 
 //#endregion
