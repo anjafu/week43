@@ -1,8 +1,6 @@
 //#region Task 1
 // Write a function that finds the most popular pizza and prints both the name and the number of orders.
 console.log("Task 1");
-let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian", "Hawaiian", "Hawaiian"];
-
 
 function findFrequencies(arr) {
     let object = {};
@@ -45,10 +43,11 @@ function makeSalesReport(frequencies){
     console.log("Most sold item: " + mostSold + ", number of sales: " + frequencies[mostSold]);
 }
 
+let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian", "Hawaiian", "Hawaiian"];
 let frequenciesPizzas = findFrequencies(soldPizzas);
+
 console.table(frequenciesPizzas);
 makeSalesReport(frequenciesPizzas);
-
 //#endregion
 
 
@@ -116,3 +115,30 @@ function tempDailyChange(arr){
 let temperatures = [14, 17, 21, 19, 22, 18, 20];
 
 console.table(tempDailyChange(temperatures));
+//#endregion
+
+
+//#region Task 4
+// Write a function that helps them choose a combination of items whose total weight comes as close as possible 
+// to 40 without going over.
+// The goal is to maximize what they can carry while staying within the weight limit 
+// (more items are better). Return a list of items and the total whight.
+console.log("\nTask 4");
+
+let gear = [
+                { name: "Longsword", weight: 12 },
+                { name: "Steel Shield", weight: 15 },
+                { name: "Healing Potion", weight: 3 },
+                { name: "Candle", weight: 1 },
+                { name: "Rope Coil", weight: 5 },
+                { name: "Crossbow", weight: 9 },
+                { name: "Spell Tome", weight: 8 },
+                { name: "Traveler’s Cloak", weight: 4 },
+                { name: "Mana Crystal", weight: 6 },
+                { name: "Rations Pack", weight: 10 },
+                { name: "Compass of True North", weight: 2 },
+                { name: "Golden Chalice", weight: 7 },
+                { name: "Dragon Scale Fragment", weight: 11 },
+                { name: "Lantern", weight: 5 },
+                { name: "Bag of Coins", weight: 13 }
+                ];
