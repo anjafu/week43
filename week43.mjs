@@ -91,3 +91,28 @@ console.table(interleaveClasses(groupA, groupB));
 //making sure the original arrays have not been changed by the function
 console.log(groupA);
 console.log(groupB);
+//#endregion
+
+
+//#region Task 3
+// Write a function that calculates the difference between each consecutive pair of days, 
+// subtracting the previous day’s temperature from the next day’s.
+// The result should be a new array showing the daily changes.
+console.log("\nTask 3");
+
+function tempDailyChange(arr){
+    let output = [];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        let tempCurrentDay = arr[i];
+        let tempNextDay = arr[i + 1];
+
+        output.push(tempNextDay - tempCurrentDay);
+    }
+
+    return output;
+}
+
+let temperatures = [14, 17, 21, 19, 22, 18, 20];
+
+console.table(tempDailyChange(temperatures));
