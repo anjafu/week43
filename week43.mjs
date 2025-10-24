@@ -125,29 +125,53 @@ console.table(tempDailyChange(temperatures));
 // (more items are better). Return a list of items and the total whight.
 console.log("\nTask 4");
 
-function getMaxItems(arr){
-    let output = [];
-    let totalWeight = 0;
+function getMaxItems(arr, maxWeight){
+    let output = {
+        items : [],
+        weight : 0,
+    }
+
+    let currentItems = [];
+    let currentWeight = 0;
 
     //cant just use regular .sort() because our array contains objects, and we have to define what in the object
     //is to be sorted by (weight)
     let sortedArrayBySmallest = [...arr].sort(function(a, b){return a.weight - b.weight});
-    console.table(sortedArrayBySmallest);
 
     for (let i = 0; i < sortedArrayBySmallest.length; i++) {
         let item = sortedArrayBySmallest[i];
         let itemWeight = sortedArrayBySmallest[i].weight;
 
-        if (totalWeight < 40) {
-            if (totalWeight + itemWeight <= 40) {
-                output.push(item);
-                totalWeight += itemWeight;
+        if (currentWeight < maxWeight) {
+            if (currentWeight + itemWeight <= maxWeight) {
+                currentItems.push(item);
+                currentWeight += itemWeight;
             }
         }
     }
 
-    console.table(output);
-    console.log(totalWeight);
+    //now has max items possible -> remove last item to see if it can be replaced by something with bigger weight
+    // -> thus maximizing weight as well
+    currentWeight -= currentItems[currentItems.length-1].weight;
+    currentItems.pop();
+
+    //for loop starting with biggest weight to find last item to add
+    for (let i = sortedArrayBySmallest.length - 1; i >= 0 ; i--) {
+        let item = sortedArrayBySmallest[i];
+        let itemWeight = sortedArrayBySmallest[i].weight;
+
+        if (currentWeight < maxWeight && !currentItems.includes(item)) {
+            if (currentWeight + itemWeight <= maxWeight) {
+                currentItems.push(item);
+                currentWeight += itemWeight;
+            }
+        }
+    }
+
+    output.items = currentItems;
+    output.weight = currentWeight;
+
+    return output;
 }
 
 let gear = [
@@ -168,5 +192,9 @@ let gear = [
                 { name: "Bag of Coins", weight: 13 }
                 ];
 
-getMaxItems(gear);
-//console.table(gear);
+
+let optimisedBackpack = getMaxItems(gear, 40);
+
+console.log("All items in backpack:");
+console.table(optimisedBackpack.items);
+console.log("Current weight of backpack: " + optimisedBackpack.weight + "kg.");
