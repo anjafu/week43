@@ -21,29 +21,35 @@ function findFrequencies(arr) {
     return object;
 }
 
-//note to self: what if multiple items have same orders? return a list. 
 function makeSalesReport(frequencies){
     //making a list of all the frequencies keys (object keys), so i can iterate through it like a normal array
     let frequenciesKeysList = Object.keys(frequencies);
 
     //starting it off with the first item on the list
-    let mostSold = frequenciesKeysList[0];
+    let mostSoldItem = frequenciesKeysList[0];
 
-    //starting from 1, because we already have the first value in the array saved in the mostSold variable
+    //starting from 1, because we already have the first value in the array saved in the mostSoldItem variable
     for (let i = 1; i < frequenciesKeysList.length; i++) {
         //this gives us name of the key, aka name of the sold item
         let itemName = frequenciesKeysList[i];
 
         //frequencies[key] gives us the number of sales because frequencies.key = number of sales
-        if (frequencies[mostSold] < frequencies[itemName]) {
-            mostSold = itemName;
+        if (frequencies[mostSoldItem] < frequencies[itemName]) {
+            mostSoldItem = itemName;
         }
     }
 
-    console.log("Most sold item: " + mostSold + ", number of sales: " + frequencies[mostSold]);
+    console.log("Most sold item(s): ");
+    //in case multiple items have same number of orders (mutliple popular orders)
+    for (let i = 0; i < frequenciesKeysList.length; i++) {
+        let itemName = frequenciesKeysList[i];
+        if (frequencies[itemName] == frequencies[mostSoldItem]) {
+            console.log(itemName + ", number of sales: " + frequencies[mostSoldItem]);
+        }
+    }
 }
 
-let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian", "Hawaiian", "Hawaiian"];
+let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian", "Hawaiian"];
 let frequenciesPizzas = findFrequencies(soldPizzas);
 
 console.table(frequenciesPizzas);
