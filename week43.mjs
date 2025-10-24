@@ -137,6 +137,7 @@ function getMaxItems(arr, maxWeight){
     //cant just use regular .sort() because our array contains objects, and we have to define what in the object
     //is to be sorted by (weight)
     let sortedArrayBySmallest = [...arr].sort(function(a, b){return a.weight - b.weight});
+    console.table(sortedArrayBySmallest);
 
     for (let i = 0; i < sortedArrayBySmallest.length; i++) {
         let item = sortedArrayBySmallest[i];
@@ -156,11 +157,12 @@ function getMaxItems(arr, maxWeight){
     currentItems.pop();
 
     //for loop starting with biggest weight to find last item to add
-    for (let i = sortedArrayBySmallest.length - 1; i >= 0 ; i--) {
+    //i >= currentItems.length to ensure we dont add duplicate items
+    for (let i = sortedArrayBySmallest.length - 1; i >= currentItems.length ; i--) {
         let item = sortedArrayBySmallest[i];
         let itemWeight = sortedArrayBySmallest[i].weight;
 
-        if (currentWeight < maxWeight && !currentItems.includes(item)) {
+        if (currentWeight < maxWeight) {
             if (currentWeight + itemWeight <= maxWeight) {
                 currentItems.push(item);
                 currentWeight += itemWeight;
@@ -198,3 +200,4 @@ let optimisedBackpack = getMaxItems(gear, 40);
 console.log("All items in backpack:");
 console.table(optimisedBackpack.items);
 console.log("Current weight of backpack: " + optimisedBackpack.weight + "kg.");
+//#endregion
