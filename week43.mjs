@@ -49,10 +49,9 @@ function makeSalesReport(frequencies){
     }
 }
 
-let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian", "Hawaiian"];
+let soldPizzas = ["Pepperoni", "Margherita", "Hawaiian", "Pepperoni", "BBQ Chicken", "Pepperoni", "Hawaiian"];
 let frequenciesPizzas = findFrequencies(soldPizzas);
 
-console.table(frequenciesPizzas);
 makeSalesReport(frequenciesPizzas);
 //#endregion
 
@@ -88,12 +87,13 @@ function interleaveClasses(arr1, arr2){
     return output;
 }
 
-let groupA = ["Liam", "Sofia", "Noah", "Thea", "Jonas"]; 
-let groupB = ["Emma", "Lucas", "Olivia"];
+let groupA = ["Liam", "Sofia", "Noah"]; 
+let groupB = ["Emma", "Lucas", "Olivia", "Thea", "Jonas"];
 
-console.table(interleaveClasses(groupA, groupB));
+console.log("Classes combined: " + interleaveClasses(groupA, groupB));
 
 //making sure the original arrays have not been changed by the function
+console.log("\nThe original classes that got interleaved:");
 console.log(groupA);
 console.log(groupB);
 //#endregion
@@ -120,7 +120,7 @@ function tempDailyChange(arr){
 
 let temperatures = [14, 17, 21, 19, 22, 18, 20];
 
-console.table(tempDailyChange(temperatures));
+console.log("Temperature changes by day: " + tempDailyChange(temperatures));
 //#endregion
 
 
@@ -143,7 +143,6 @@ function getMaxItems(arr, maxWeight){
     //cant just use regular .sort() because our array contains objects, and we have to define what in the object
     //is to be sorted by (weight)
     let sortedArrayBySmallest = [...arr].sort(function(a, b){return a.weight - b.weight});
-    console.table(sortedArrayBySmallest);
 
     for (let i = 0; i < sortedArrayBySmallest.length; i++) {
         let item = sortedArrayBySmallest[i];
